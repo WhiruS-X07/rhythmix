@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rhythmix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#111111] text-white">
+
+    <!-- ✅ Fixed Top Navbar -->
+    <div
+        class="top fixed top-0 z-50 flex items-center justify-between w-full px-6 py-2 mt-4 bg-[#111111] overflow-x-auto">
+        <!-- Logo Section -->
+        <div class="logo flex items-center gap-3 shrink-0">
+            <img src="/assets/logo.png" alt="logo" class="w-16 h-16">
+            <h1 class="font-bold text-2xl text-white">rhythmix</h1>
+        </div>
+
+        <!-- Home + Search -->
+        <div class="home flex items-center gap-4 shrink min-w-0">
+            <a href="#" class="flex items-center gap-2 font-bold text-xl text-white hover:text-blue-400 transition">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+            <div class="relative flex items-center justify-center">
+                <input type="text" id="searchfield" placeholder="Search..." class="searchfield" />
+                <div class="search"></div>
+            </div>
+
+
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="autho flex items-center gap-3 shrink-0">
+            <button class="font-bold text-gray-300 w-20 h-10 hover:text-blue-400 transition">Sign Up</button>
+            <button class="bg-white font-bold text-gray-800 w-20 h-10 rounded-lg hover:text-blue-400 transition">Log
+                in</button>
+        </div>
+    </div>
+
+    <!-- ✅ Main Layout Container (with padding for fixed navbar) -->
+    <div class="flex pt-[90px] min-h-screen w-full">
+
+        <!-- ✅ Sidebar -->
+        <div class="side-bar w-1/5 flex flex-col gap-4 px-4 mx-2 mt-2 mb-10 ">
+            <div class="library bg-[#222222] rounded-md h-full p-4 flex flex-col flex-1">
+                <div
+                    class="flex items-center gap-2 font-bold text-xl hover:text-blue-400 transition m-4 cursor-pointer">
+                    <i class="fa-solid fa-bookmark"></i>
+                    Library
+                </div>
+                <div class="footer flex flex-wrap gap-3 mt-auto m-4">
+                    <div class="text-gray-400"><a href="#"><span>Legal</span></a></div>
+                    <div class="text-gray-400"><a href="#"><span>Privacy Center</span></a></div>
+                    <div class="text-gray-400"><a href="#"><span>Privacy Policy</span></a></div>
+                    <div class="text-gray-400"><a href="#"><span>Cookies</span></a></div>
+                    <div class="text-gray-400"><a href="#"><span>About Ads</span></a></div>
+                    <div class="text-gray-400"><a href="#"><span>Accessibility</span></a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Main Content Area -->
+        <div class="main-content flex flex-col relative bg-[#222222] w-4/5 rounded mr-4 mt-2 mb-10 min-h-[80vh]">
+            <div class="main p-4 m-4 flex-1">
+                <h1 class="text-5xl">Playlist!</h1>
+                <div class="playlist mt-4 grid grid-cols-3 gap-4">
+                    <div class="playlist-item bg-[#444444] p-4 rounded-lg hover:bg-gray-600 transition">
+                        <img src="/assets/playlist1.jpg" alt="Playlist 1" class="w-full h-80 object-cover rounded">
+                        <h2 class="text-xl font-bold mt-2">Chill Vibes</h2>
+                    </div>
+                    <div class="playlist-item bg-[#444444] p-4 rounded-lg hover:bg-gray-600 transition">
+                        <img src="/assets/playlist2.jpg" alt="Playlist 2" class="w-full h-80 object-cover rounded">
+                        <h2 class="text-xl font-bold mt-2">Workout Hits</h2>
+                    </div>
+                    <div class="playlist-item bg-[#444444] p-4 rounded-lg hover:bg-gray-600 transition">
+                        <img src="/assets/playlist3.jpg" alt="Playlist 3" class="w-full h-80 object-cover rounded">
+                        <h2 class="text-xl font-bold mt-2">Top Charts</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Player stays at bottom inside this box -->
+            <div class="player bg-[#333333] p-4">
+                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-play"></i>
+                <i class="fa-solid fa-pause"></i>
+                <i class="fa-solid fa-forward"></i>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
