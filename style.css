@@ -12,6 +12,7 @@
 
 .scrolling {
     cursor: grabbing;
+    scroll-behavior: smooth;
 }
 
 
@@ -96,7 +97,7 @@
 }
 
 .searchfield:focus~.search {
-    right: -34rem;
+    right: -33rem;
     background: transparent;
     z-index: 6;
 }
@@ -122,86 +123,205 @@
     transform: rotate(-45deg);
 }
 
-#songs,#trending {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 1rem;
-    overflow: hidden;
+
+.non-active-nav {
+    background-color: rgba(250, 250, 250, 0.404);
+    backdrop-filter: blur(10px);
+    color: #2A313B;
+}
+
+.active-nav {
+    background-color: #fff;
+    color: #2A313B;
 }
 
 
 
-.card {
-    flex: 0 0 calc(10% - 1rem);
+
+/* Container */
+#p-1,
+#p-2,
+#p-3 {
     display: flex;
-    flex-direction: column;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+/* Card */
+.card {
+    flex: 1 0 20%;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-}
-
-.card:hover {
+    background: #1e242c;
     border-radius: 0.5rem;
-    background: #2A313B;
-    cursor: pointer;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
+    position: relative;
     transition: all 0.3s ease-in-out;
 }
 
+/* Card hover */
+.card:hover {
+    background: #2A313B;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Card image */
 .card img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 0.5rem;
 }
 
+/* Card text */
+.card h3,
+.card p {
+    white-space: normal;
+    /* allow wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 0.25rem;
+}
+
 .card h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-top: 0.5rem;
     color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .card p {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: #b0b0b0;
     margin-top: 0.25rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
-@media (min-width: 768px) {
+/* Card button */
+.card .play-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(26, 31, 37, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .play-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+/* Card button */
+.card .add-queue-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(26, 31, 37, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .add-queue-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Responsive - small screens */
+@media (max-width: 500px) {
+    .card {
+        flex: 1 0 30%;
+        /* fit 5 cards */
+    }
+
     .card h3 {
-        font-size: 1.125rem;
-        max-height: 2.7em;
+        font-size: 0.65rem;
+        margin-top: 0.1rem;
     }
 
     .card p {
-        font-size: 0.875rem;
-        max-height: 2.7em;
+        font-size: 0.55rem;
+         margin-top: 0.1rem;
     }
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 450px) {
+    .card {
+        flex: 1 0 28%;
+        /* 4 cards */
+    }
+
     .card h3 {
-        font-size: 1.25rem;
-        max-height: 3em;
+        font-size: 0.6rem; margin-top: 0.1rem;
     }
 
     .card p {
-        font-size: 1rem;
-        max-height: 3em;
+        font-size: 0.5rem; margin-top: 0.1rem;
+    }
+}
+
+/* Responsive - medium screens */
+@media (min-width: 600px) {
+    .card {
+        flex: 1 0 30%;
     }
 
+    
+}
+
+@media (min-width: 800px) {
+    .card {
+        flex: 1 0 18%;
+    }
+
+    /* 5 cards */
+}
+
+@media (min-width: 1200px) {
+    .card {
+        flex: 1 0 16.6%;
+    }
+
+    /* 6 cards */
+}
+
+@media (min-width: 1600px) {
+    .card {
+        flex: 1 0 12.5%;
+    }
+
+    /* 8 cards */
+}
+
+@media (min-width: 2000px) {
+    .card {
+        flex: 1 0 10%;
+    }
+
+    /* 8 cards */
 }

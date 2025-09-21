@@ -1,3 +1,11 @@
+<?php
+header("Cache-Control: no-cache, must-revalidate"); 
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +19,6 @@
     <title>Rhythmix</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" href="assets/logo.png" type="image/x-icon">
 </head>

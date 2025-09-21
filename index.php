@@ -6,96 +6,92 @@ include("includes/backend.php");
 <body class=" bg-[#0D0F12] text-white">
 
     <!-- ✅ Fixed Top Navbar -->
-    <div class="nav fixed top-0 left-0 right-0 flex flex-wrap items-center justify-between px-6 pt-2 z-20">
+    <div class="nav fixed top-0 left-0 right-0 flex flex-wrap items-center justify-between 
+    px-4 sm:px-6 md:px-10 lg:px-16 xl:px-28 py-3 z-20" data-aos="fade-down" data-aos-duration="700"
+        data-aos-easing="ease-out-cubic">
         <!-- Home + Search -->
-        <div class="flex items-center gap-4 shrink min-w-0">
-            <a href="#" class="home bg-[#1A1F25] rounded-full p-3 font-bold text-2xl transition">
-                <i class="fa-solid fa-house"></i></a>
-            <div class="relative flex items-center justify-center ">
+        <div class="flex items-center gap-3 sm:gap-4 shrink min-w-0" data-aos="fade-right" data-aos-delay="200">
+            <a href="#" class="home bg-[#1A1F25] rounded-full p-2 sm:p-3 text-lg sm:text-xl md:text-2xl transition"
+                data-aos="zoom-in" data-aos-delay="300">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <div class="relative flex items-center justify-center" data-aos="fade-left" data-aos-delay="400">
                 <input type="text" id="searchfield" placeholder="Search..." class="searchfield" />
                 <div class="search"></div>
             </div>
         </div>
         <!-- Logo Section -->
-        <div class="logo flex items-center gap-3 shrink-0">
-            <img src="assets/logo.png" alt="logo" class="w-16 h-16">
-            <h1 class="font-bold text-2xl">Rhythmix</h1>
+        <div class="logo flex items-center gap-2 sm:gap-3 shrink-0" data-aos="fade-left" data-aos-delay="600">
+            <img src="assets/logo.png" alt="logo" class="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16">
+            <h1 class="font-bold text-xl sm:text-2xl md:text-3xl">Rhythmix</h1>
         </div>
         <!-- Auth Buttons -->
-        <div class="autho flex items-center gap-3 shrink-0">
-            <button id="uploadBtn">Upload</button>
-            <div
-                class="model hidden fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] z-50 flex justify-center items-center m-4 rounded-lg">
-                <div
-                    class="modelContent fixed top-0 left-0 right-0 bottom-0 bg-white bg-opacity-30 backdrop-blur-md z-50 flex justify-center items-center m-4 rounded-lg">
-                    <span class="closeBtn cursor-pointer text-2xl bg-white bg-opacity-30 backdrop-blur-md rounded-full p-1 fixed bottom-0 my-10 hover:shadow-[0_8px_25px_0_rgba(0,0,0,0.3)]
-            hover:scale-105 hover:-translate-y-1
-            transition-all duration-300 e   ase-out"><i class="fa-solid fa-xmark"></i></span>
-                    <iframe src="" id="uploadFrame"></iframe>
-                </div>
-            </div>
+        <div class="autho flex items-center gap-2 sm:gap-3 shrink-0">
             <?php if (!$isLoggedIn) {
-                echo '<a href="login/login.php" class="bg-white font-bold text-gray-800 w-20 h-10 rounded-lg hover:text-blue-400 transition flex items-center justify-center">Log in</a>';
+                echo '<a href="user-auth/login.php" class="bg-white font-bold text-gray-800 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:text-blue-400 transition text-sm sm:text-base">Log in</a>';
             } else {
-                echo '<a href="login/logout.php" class="bg-white font-bold text-gray-800 w-20 h-10 rounded-lg hover:text-blue-400 transition flex items-center justify-center">Logout</a>';
+                echo '<a href="#" class="bg-white font-bold text-gray-800 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:text-blue-400 transition text-sm sm:text-base">Logout</a>';
             } ?>
-
         </div>
+
     </div>
 
     <!-- Nav Bar for Mobile -->
-    <div
-        class="mobile-nav hidden fixed top-0 left-0 right-0 flex items-center justify-between bg-[#f6f5f7] bg-opacity-30 px-4 py-2 shadow-xl z-20">
+    <div class="mobile-nav hidden fixed top-0 left-0 right-0 flex items-center justify-between px-4 z-20">
 
         <!-- Menu Button -->
         <div class="relative">
-            <button id="mobileMenuBtn" class="text-xl text-black hover:text-blue-400 transition">
+            <button id="mobileMenuBtn" class="text-xl transition">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <!-- Dropdown Menu -->
             <div id="mobileMenu" class="hidden absolute top-full left-0 bg-white shadow-lg rounded-lg mt-2 p-4 w-40">
                 <a href="#" class="block text-black hover:text-blue-400 transition mb-2">Home</a>
-                <a href="login/login.php" class="block text-black hover:text-blue-400 transition mb-2">Log in</a>
-                <a href="login/logout.php" class="block text-black hover:text-blue-400 transition">Logout</a>
+                <a href="#" class="block text-black hover:text-blue-400 transition mb-2">Log in</a>
+                <!-- <a href="login/logout.php" class="block text-black hover:text-blue-400 transition">Logout</a> -->
             </div>
         </div>
 
         <!-- Logo -->
         <div class="logo flex items-center gap-3 shrink-0">
             <img src="assets/logo.png" alt="logo" class="w-16 h-16">
-            <h1 class="font-bold text-2xl text-black">Rhythmix</h1>
+            <h1 class="font-bold text-2xl">Rhythmix</h1>
         </div>
     </div>
 
 
-
     <!-- Main Layout Container -->
-    <div
-        class="main bg-[#1A1F25] fixed top-20 left-0 right-0 bottom-10 overflow-y-auto scrollbar-hide rounded-xl w-[90%] mx-auto p-6">
-        <div id="songs" class="sideScroll"></div>
-        <div id="trending" class="sideScroll"></div>
-        <div class="tracks"></div>
+    <div class="main bg-[#1A1F25] fixed top-20 left-0 right-0 bottom-10 overflow-hidden flex flex-col rounded-xl w-[90%] mx-auto 
+         mt-2 p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8" data-aos="fade-up" data-aos-duration="800"
+        data-aos-easing="ease-out-cubic">
 
+        <div class="nav-conatiner bg-[#2A313B] absolute top-0 right-0 left-0 h-14 z-30 mb-2" data-aos="fade-down"
+            data-aos-delay="200">
+            <ul class="flex gap-4 sm:gap-6 px-6 sm:px-10 md:px-16 py-3">
+                <li id="home-nav" class="active-nav px-2 flex items-center font-bold rounded-2xl" data-aos="fade-right"
+                    data-aos-delay="300">Home</li>
+                <li id="playlist-nav" class="non-active-nav px-2 py-1 font-bold rounded-2xl" data-aos="fade-right"
+                    data-aos-delay="400">Playlist</li>
+                <li id="artist-nav" class="non-active-nav px-2 py-1 font-bold rounded-2xl" data-aos="fade-right"
+                    data-aos-delay="500">Artist</li>
+                <li id="history-nav" class="non-active-nav px-2 py-1 font-bold rounded-2xl" data-aos="fade-right"
+                    data-aos-delay="600">History</li>
+            </ul>
+        </div>
 
-        <!-- <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="card relative group bg-white bg-opacity-30 backdrop-blur-md
-            px-4 py-4 w-64 h-128 
+        <section class="home overflow-y-auto scrollbar-hide m-10">
+            <h2 class="font-extrabold text-lg sm:text-lg md:text-2xl lg:text-3xl pt-4" data-aos="fade-up" data-aos-delay="200">Fresh & New</h2>
+            <div id="p-1" class="sideScroll" data-aos="fade-up" data-aos-delay="400"></div>
 
+            <h2 class="font-extrabold text-md sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl pt-4" data-aos="fade-up" data-aos-delay="600">Indie</h2>
+            <div id="p-2" class="sideScroll" data-aos="fade-up" data-aos-delay="800"></div>
 
-            hover:shadow-lg hover:scale-105 hover:-translate-y-1 transition-all duration-300 ease-out">
-                <img src="<?php echo htmlspecialchars($row['cover_image']) ?>" class="w-full h-56 object-cover">
-                <h3 class="font-bold text-xl mt-2"><?php echo htmlspecialchars($row['title']); ?></h3>
-                <p class="font-thin text-sm"><?php echo htmlspecialchars($row['artist']); ?></p>
-                <button
-                    class="text-white bg-[#FF4B2B] p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 fixed bottom-0 right-0 m-4"
-                    data-file="<?php echo htmlspecialchars($row['file_path']); ?>"
-                    data-title="<?php echo htmlspecialchars($row['title']); ?>"
-                    data-artist="<?php echo htmlspecialchars($row['artist']); ?>" onclick="playFromButton(this)"><i
-                        class="fa-solid fa-play"></i></button>
-            </div>
-        <?php endwhile; ?> -->
+            <h2 class="font-extrabold text-md sm:text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-3xl pt-4" data-aos="fade-up" data-aos-delay="1000">Chill Zone</h2>
+            <div id="p-3" class="sideScroll" data-aos="fade-up" data-aos-delay="1200"></div>
+        </section>
     </div>
+
 
     <div
         class="queue hidden fixed right-0 top-0 h-full  w-4/5 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 bg-white bg-opacity-30 backdrop-blur-md z-40 p-4">
@@ -105,18 +101,19 @@ include("includes/backend.php");
     </div>
 
     <!-- ✅ Player -->
-    <div class="player absolute z-50 hidden w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/5 p-6 rounded-2xl 
-            bg-black bg-opacity-20 backdrop-blur-md shadow-lg text-black 
-            flex flex-col items-center justify-between cursor-move" style="top: 80%; left: 40%">
+    <div class="player absolute z-50 hidden w-full h-40 md:w-1/2 lg:w-[55%] xl:w-2/5 2xl:w-1/4 3xl p-6 rounded-2xl 
+            bg-white bg-opacity-20 backdrop-blur-md shadow-lg text-black 
+            flex flex-col items-center justify-between cursor-move" style="top: 80%; left: 40%" data-aos="zoom-in-up"
+        data-aos-duration="800" data-aos-delay="300">
 
 
-        <div class="player-top flex items-center justify-between w-full mb-4">
+        <div class="player-top flex items-center justify-between w-full my-2">
             <div class="song-info flex flex-col items-start">
                 <h2 id="title" class="text-2xl font-bold">Song Title</h2>
                 <p id="artist">Artist Name</p>
             </div>
-            <div class="controls flex items-center gap-5 text-2xl mr-4">
-                <button id="likeBtn"><i class="fa-regular fa-heart"></i></button>
+            <div class="controls flex items-center gap-5 text-2xl lg:text-xl mr-4">
+                <!-- <button id="likeBtn"><i class="fa-regular fa-heart"></i></button> -->
                 <button id="prevBtn"><i class="fa-solid fa-backward-step"></i></button>
                 <button id="playBtn"><i class="fa-solid fa-play"></i></button>
                 <button id="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
@@ -132,12 +129,11 @@ include("includes/backend.php");
             <div class="time">
                 <span id="current-time">0:00</span>
             </div>
-            <div class="progress-container bg-[#333] h-[5px] w-full cursor-pointer overflow-hidden border border-[#333] rounded-[5px]"
+            <div class="progress-container bg-[#333] h-[5px] w-full cursor-pointer overflow-hidden rounded-[5px]"
                 id="progress-container">
-                <div class="progress bg-white bg-opacity-50 h-full w-[0%]" id="progress"></div>
+                <div class="progress bg-white bg-opacity-50 h-full w-[0%]" id="progress">
+                </div>
             </div>
-
-
             <div class="time">
                 <span id="duration">0:00</span>
             </div>
@@ -155,7 +151,7 @@ include("includes/backend.php");
                 <p id="artist-mobile">Artist Name</p>
             </div>
             <div class="flex items-center gap-3">
-                <button id="likeBtn-mobile"><i class="fa-regular fa-heart"></i></button>
+                <!-- <button id="likeBtn-mobile"><i class="fa-regular fa-heart"></i></button> -->
                 <button id="prevBtn-mobile"><i class="fa-solid fa-backward-step"></i></button>
                 <button id="playBtn-mobile"><i class="fa-solid fa-play"></i></button>
                 <button id="nextBtn-mobile"><i class="fa-solid fa-forward-step"></i></button>
@@ -185,8 +181,13 @@ include("includes/backend.php");
 
 
 
-    <script src="api.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="script.js"></script>
+    <!-- <script src="api.js"></script> -->
 </body>
 
 
