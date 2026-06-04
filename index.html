@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rhythmix</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="bg-[#121212] text-white">
+    <!-- HEADER -->
+    <header
+      class="fixed top-0 left-0 w-full h-16 bg-[#181818] border-b border-gray-800 flex items-center justify-between px-6 z-50"
+    >
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-music text-2xl"></i>
+        <h1 class="text-2xl font-bold">Rhythmix</h1>
+      </div>
+
+      <div class="w-full max-w-xl mx-6">
+        <div class="flex bg-[#282828] rounded-full px-4 py-2">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search songs, artists..."
+            class="bg-transparent outline-none flex-1"
+          />
+          <button id="searchBtn">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <button class="bg-white text-black px-5 py-2 rounded-full font-medium">
+        Login
+      </button>
+    </header>
+
+    <!-- MAIN APP -->
+    <div class="flex pt-16">
+      <!-- SIDEBAR -->
+      <aside
+        class="w-64 min-h-screen bg-[#181818] border-r border-gray-800 p-4"
+      >
+        <nav class="flex flex-col gap-2">
+          <button class="nav-btn">
+            <i class="fa-solid fa-house"></i>
+            Home
+          </button>
+
+          <button class="nav-btn">
+            <i class="fa-solid fa-fire"></i>
+            Trending
+          </button>
+
+          <button class="nav-btn">
+            <i class="fa-solid fa-book"></i>
+            Library
+          </button>
+
+          <button class="nav-btn">
+            <i class="fa-solid fa-heart"></i>
+            Favorites
+          </button>
+
+          <button class="nav-btn">
+            <i class="fa-solid fa-clock"></i>
+            Recently Played
+          </button>
+
+          <button id="queueBtn" class="nav-btn">
+            <i class="fa-solid fa-list"></i>
+            Queue
+          </button>
+        </nav>
+      </aside>
+
+      <!-- CONTENT -->
+      <main class="flex-1 p-8 pb-40 overflow-y-auto">
+        <!-- HERO -->
+        <section class="mb-10">
+          <div
+            class="rounded-xl p-8 bg-gradient-to-r from-purple-700 to-pink-600"
+          >
+            <h2 class="text-4xl font-bold">Welcome to Rhythmix</h2>
+            <p class="mt-2 text-gray-200">
+              Discover music from artists around the world.
+            </p>
+          </div>
+        </section>
+
+        <!-- SEARCH RESULTS -->
+        <section id="searchSection" class="hidden mb-10">
+          <h2 class="text-2xl font-bold mb-4">Search Results</h2>
+          <div id="searchResults" class="music-grid"></div>
+        </section>
+
+        <!-- FRESH -->
+        <section class="mb-10">
+          <h2 class="section-title">Fresh & New</h2>
+          <div id="freshSongs" class="music-grid"></div>
+        </section>
+
+        <!-- TRENDING -->
+        <section class="mb-10">
+          <h2 class="section-title">Trending</h2>
+          <div id="trendingSongs" class="music-grid"></div>
+        </section>
+
+        <!-- INDIE -->
+        <section class="mb-10">
+          <h2 class="section-title">Indie</h2>
+          <div id="indieSongs" class="music-grid"></div>
+        </section>
+
+        <!-- CHILL -->
+        <section class="mb-10">
+          <h2 class="section-title">Chill Zone</h2>
+          <div id="chillSongs" class="music-grid"></div>
+        </section>
+
+        <!-- RECOMMENDED -->
+        <section class="mb-10">
+          <h2 class="section-title">Recommended For You</h2>
+          <div id="recommendedSongs" class="music-grid"></div>
+        </section>
+
+        <!-- FAVORITES -->
+        <section class="mb-10">
+          <h2 class="section-title">Favorites</h2>
+          <div id="favoritesSongs" class="music-grid"></div>
+        </section>
+
+        <!-- RECENT -->
+        <section class="mb-10">
+          <h2 class="section-title">Recently Played</h2>
+          <div id="recentSongs" class="music-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- QUEUE DRAWER -->
+    <aside
+      id="queuePanel"
+      class="fixed right-0 top-0 h-full w-96 bg-[#181818] border-l border-gray-800 translate-x-full transition-transform duration-300 z-50"
+    >
+      <div
+        class="flex justify-between items-center p-5 border-b border-gray-800"
+      >
+        <h3 class="text-xl font-bold">Queue</h3>
+
+        <button id="closeQueue">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="queueList" class="p-4"></div>
+
+      <div class="p-4 border-t border-gray-800">
+        <button id="clearQueue" class="w-full bg-red-600 py-2 rounded">
+          Clear Queue
+        </button>
+      </div>
+    </aside>
+
+    <!-- PLAYER -->
+    <footer
+      class="fixed bottom-0 left-0 w-full h-24 bg-black border-t border-gray-800 flex items-center px-6 z-40"
+    >
+      <!-- SONG INFO -->
+      <div class="flex items-center gap-3 w-80">
+        <img id="coverImage" src="" class="w-14 h-14 rounded object-cover" />
+
+        <div>
+          <h4 id="songTitle">Select a Song</h4>
+          <p id="artistName" class="text-sm text-gray-400">Artist</p>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="flex-1 flex flex-col items-center">
+        <div class="flex items-center gap-4">
+          <button id="shuffleBtn">
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+
+          <button id="prevBtn">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+
+          <button id="playBtn">
+            <i class="fa-solid fa-play"></i>
+          </button>
+
+          <button id="nextBtn">
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+
+          <button id="repeatBtn">
+            <i class="fa-solid fa-repeat"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 w-full max-w-xl">
+          <span id="currentTime">0:00</span>
+
+          <input
+            id="progressBar"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            class="flex-1"
+          />
+
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="w-80 flex justify-end items-center gap-4">
+        <button id="favoriteBtn">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <button id="muteBtn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <input id="volumeSlider" type="range" min="0" max="100" value="80" />
+      </div>
+    </footer>
+
+    <!-- AUDIO -->
+    <audio id="audioPlayer"></audio>
+
+
+
+    <!-- TOAST -->
+    <div id="toastContainer"></div>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
